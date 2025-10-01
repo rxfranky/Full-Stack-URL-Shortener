@@ -27,7 +27,7 @@ All data is stored in **MongoDB**.
 - **State Management:** [Redux](https://redux.js.org/)  
 - **Authentication:** Google, GitHub, Email/Password  
 - **Validation:** [express-validator](https://express-validator.github.io/)  
-- **SendGrid:** [For email management]  
+- **Nodemailer with Gmail:** [For email management]  
 
 ---
 
