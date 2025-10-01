@@ -16,6 +16,7 @@ All data is stored in **MongoDB**.
 - **App-wide state management** using Redux
 - **Data validation** with express-validator
 - **MongoDB** for persistent storage
+- **Profile Picture** Fetching from loggedin GitHub or Google-account
 
 ---
 
