@@ -74,9 +74,9 @@ export default function Main({
 
                 <form className="flex flex-col gap-3" action={dispatch}>
 
-                    <input type="text" className={`p-2 focus:outline-purple-800 rounded-sm w-[350px] ${forLoginPage || forSignup ? 'bg-gray-200' : 'bg-white'}`} placeholder={placeholder_1} name={name_1} defaultValue={editVals.url ?? ''} />
+                    <input type="text" className={`p-2 focus:outline-purple-800 rounded-sm w-[350px] ${forLoginPage || forSignup ? 'bg-gray-200' : 'bg-white'}`} placeholder={placeholder_1} name={name_1} defaultValue={''} />
 
-                    <input type="text" className={`p-2 focus:outline-purple-800 rounded-sm w-[350px] ${forLoginPage || forSignup ? 'bg-gray-200' : 'bg-white'}`} placeholder={placeholder_2} name={name_2} defaultValue={editVals.preferedText ?? ''} />
+                    <input type="text" className={`p-2 focus:outline-purple-800 rounded-sm w-[350px] ${forLoginPage || forSignup ? 'bg-gray-200' : 'bg-white'}`} placeholder={placeholder_2} name={name_2} defaultValue={''} />
 
                     {(forSignup || forLoginPage) && (
                         <>

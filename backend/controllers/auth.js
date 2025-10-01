@@ -4,11 +4,16 @@ const LoggedInUserModel = require('../models/loggedIn')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs');
 const ReduxDataModel = require('../models/reduxStore')
-const sgMail = require('@sendgrid/mail')
+const nodemailer = require('nodemailer')
 const crypto = require('node:crypto')
 
-
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'mdtalha9434@gmail.com',
+        pass: process.env.GAP
+    }
+})
 
 exports.googleAuth = async (req, res) => {
     const id_token = req.body.idToken;
@@ -133,13 +138,12 @@ exports.signup = async (req, res) => {
     const savedUserWithEmailAndPass = await newUser.save()
     console.log("savedUserWithEmailAndPass-", savedUserWithEmailAndPass)
 
-    const sgRes = await sgMail.send({
-        from: 'sahidafridi0076@gmail.com',
+    transporter.sendMail({
+        from: 'mdtalha9434@gmail.com',
         to: data.email,
         subject: 'Welcome to our community',
         html: '<span>its been a pleasure! Great to see you ahead.</span>'
     })
-    console.log('sent mail to new user-', sgRes)
 
     return res.json({ isSignedUpSuccess: true })
 }
@@ -217,19 +221,15 @@ exports.sendResetEmail = async (req, res) => {
     if (!isFound) {
         return res.json({ msg: 'entered email does&apos;t exists!' })
     }
-    const sgRes = await sgMail.send({
-        from: 'sahidafridi0076@gmail.com',
+    const sentEmailInfo = await transporter.sendMail({
+        from: 'mdtalha9434@gmail.com',
         to: email,
         subject: 'Reset Password',
         html: `<span>reset link-</span> <a href=http://localhost:3000/reset-password/${token}>click here</a>`
     })
-    console.log('sg res-', sgRes)
+    console.log('sentEmailInfo-', sentEmailInfo)
 
-    if (sgRes[0].statusCode == 202) {
-        return res.json({ isEmailSent: true })
-    }
-
-    return res.json({ isEmailSent: false })
+    return res.json({ isEmailSent: true })
 }
 
 

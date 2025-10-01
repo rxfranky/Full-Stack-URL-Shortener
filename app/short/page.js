@@ -19,14 +19,14 @@ export default function Short() {
         async function fetchData() {
             const response = await fetch('http://localhost:4000/getShorts', {
                 headers: {
-                    email: userData.email || session.user.email
+                    email: userData?.email || session?.user?.email
                 }
             })
             const data = await response.json()
             setData(data.data)
         }
         fetchData()
-    }, [])
+    }, [session, userData])
 
     function handleEditClick(id, preferedText, url) {
         setEditVals({ id, preferedText, url })
